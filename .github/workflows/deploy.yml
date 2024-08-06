@@ -31,7 +31,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: knyaka/1cebit-group-listener-bot
+          images: knyaka/1cebit-pdf-reader-bot
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
@@ -40,7 +40,7 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            knyaka/1cebit-group-listener-bot
+            knyaka/1cebit-pdf-reader-bot
           labels: ${{ steps.meta.outputs.labels }}
 
   deploy:
@@ -56,7 +56,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port:
           script: |
-            docker pull knyaka/1cebit-group-listener-bot:latest
-            docker stop 1cebit-group-listener-bot
-            docker remove 1cebit-group-listener-bot
-            docker run -d --name 1cebit-group-listener-bot --env TOKEN=${{ secrets.BOT_TOKEN }} --env CHAT_ID=${{ secrets.BOT_CHAT_ID }} knyaka/1cebit-group-listener-bot
+            docker pull knyaka/1cebit-pdf-reader-bot:latest
+            docker stop 1cebit-pdf-reader-bot
+            docker remove 1cebit-pdf-reader-bot
+            docker run -d --name 1cebit-pdf-reader-bot --env TOKEN=${{ secrets.BOT_TOKEN }} knyaka/1cebit-pdf-reader-bot

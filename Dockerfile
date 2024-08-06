@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY package.json /.
 COPY package-lock.json /.
-COPY index.js /.
+COPY index.mjs /.
 
 RUN npm ci
 
